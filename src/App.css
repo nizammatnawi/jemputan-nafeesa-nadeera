@@ -1512,14 +1512,10 @@ body.gerbang-dedah .music-btn {
 
 .gallery__grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 14px;
-}
-
-@media (min-width: 720px) {
-  .gallery__grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  max-width: 720px;
+  margin: 0 auto;
 }
 
 .gallery__item {
@@ -1527,7 +1523,7 @@ body.gerbang-dedah .music-btn {
   overflow: hidden;
   border: 3px solid var(--pearl-white);
   box-shadow: var(--shadow-card);
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 16 / 9;
   background: var(--soft-rose);
 }
 

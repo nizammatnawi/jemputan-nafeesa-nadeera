@@ -120,12 +120,7 @@ export const PROGRAMME = [
 
 /* ---------- GALERI ---------- */
 
-export const GALLERY_IMAGES = [
-  '/bersama1.jpg',
-  '/bersama2.jpg',
-  '/bersama3.jpg',
-  '/bersamanadeeranafeesa.jpg',
-]
+export const GALLERY_IMAGES = ['/bersamanadeeranafeesa.jpg']
 
 /* ---------- TEKS ---------- */
 
