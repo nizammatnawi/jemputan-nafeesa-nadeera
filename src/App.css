@@ -836,6 +836,9 @@ body.gerbang-dedah .music-btn {
   width: max-content;
   animation: sticker-marquee var(--sticker-marquee-duration) linear infinite;
   will-change: transform;
+  /* Bekukan lapisan compositor sendiri — lihat nota pada .marquee__sticker */
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .marquee__group {
@@ -855,6 +858,13 @@ body.gerbang-dedah .music-btn {
   /* Bayang lembut sahaja — garis putih sudah sedia ada pada fail PNG */
   filter: drop-shadow(0 6px 10px rgba(139, 76, 112, 0.18));
   user-select: none;
+  /* Elak pepijat WebKit mudah alih: elemen ber-`filter` di dalam landasan
+     yang sentiasa beranimasi kadangkala digugurkan oleh compositor semasa
+     skrol dan tidak dilukis semula — nampak seperti "hilang" secara rawak.
+     Meletakkan setiap sticker pada lapisan GPU sendiri (bukan berkongsi
+     lapisan induk) mengelakkan pepijat ini. */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Gerakkan tepat separuh landasan = satu jujukan penuh (termasuk jaraknya) */
