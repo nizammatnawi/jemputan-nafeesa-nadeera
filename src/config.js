@@ -120,7 +120,7 @@ export const PROGRAMME = [
 
 /* ---------- GALERI ---------- */
 
-export const GALLERY_IMAGES = ['/bersamanadeeranafeesa.jpg']
+export const GALLERY_IMAGES = ['/bersamanafeesanadeera.jpg']
 
 /* ---------- TEKS ---------- */
 
