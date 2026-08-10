@@ -5,7 +5,6 @@ import {
   LIMITS,
   fetchWishes,
   isWishesConfigured,
-  relativeDate,
   submitWish,
   validateWish,
 } from '../lib/wishesApi.js'
@@ -229,9 +228,6 @@ export default function GuestWishes() {
                   </span>
                   <p className="wishes__message">{wish.message}</p>
                   <p className="wishes__name">{wish.name}</p>
-                  {wish.timestamp && (
-                    <p className="wishes__date">{relativeDate(wish.timestamp)}</p>
-                  )}
                 </li>
               ))}
             </ul>
