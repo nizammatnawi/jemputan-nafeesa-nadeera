@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ms">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--
+      Matikan pemulihan skrol automatik pelayar SEBELUM apa-apa dimuatkan.
+      Tanpa ini, tetamu yang menyegarkan laman ketika berada di bahagian bawah
+      akan dikembalikan ke kedudukan lama — menyebabkan peralihan "Buka Jemputan"
+      bermula dari tengah laman. Skrip ini sengaja diletak paling awal.
+    -->
+    <script>
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual'
+      }
+    </script>
+
+    <title>Majlis Aqiqah &amp; Sambutan Hari Lahir — Puteri Nafeesa &amp; Puteri Nadeera</title>
+    <meta
+      name="description"
+      content="Jemputan ke Majlis Aqiqah Puteri Nadeera serta Sambutan Hari Lahir Puteri Nafeesa &amp; Puteri Nadeera. Sabtu, 29 Ogos 2026, 11.00 pagi hingga 4.30 petang di Saujana Utama."
+    />
+
+    <!-- Open Graph (untuk perkongsian WhatsApp) -->
+    <!-- NOTA: selepas deploy, gantikan URL di bawah dengan domain sebenar anda -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ms_MY" />
+    <meta property="og:title" content="Majlis Aqiqah & Sambutan Hari Lahir — Puteri Nafeesa & Puteri Nadeera" />
+    <meta
+      property="og:description"
+      content="Sabtu, 29 Ogos 2026 · 11.00 Pagi – 4.30 Petang · 169, Jalan Anggerik 3/1, Saujana Utama. Kehadiran dan doa anda amat dihargai."
+    />
+    <meta property="og:url" content="https://GANTIKAN-DOMAIN-ANDA.vercel.app/" />
+    <meta property="og:image" content="https://GANTIKAN-DOMAIN-ANDA.vercel.app/bersamanadeeranafeesa.jpg" />
+
+    <!-- Favicon (placeholder — boleh digantikan dengan fail sendiri) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fon -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Poppins:wght@300;400;500;600&family=Reem+Kufi:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta name="theme-color" content="#FCEEF3" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

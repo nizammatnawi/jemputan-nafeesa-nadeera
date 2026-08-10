@@ -1,0 +1,89 @@
+/* ============================================================
+   TOKEN REKA BENTUK & GAYA ASAS
+   ============================================================ */
+
+:root {
+  /* Palet warna */
+  --deep-rose: #8b4c70;
+  --dusty-pink: #d98ca4;
+  --blush-pink: #f6d6e0;
+  --soft-rose: #fceef3;
+  --pearl-white: #ffffff;
+  --warm-ivory: #fff8f3;
+  --rose-gold: #c89b7b;
+
+  /* Warna teks (kontras baik di atas latar cerah) */
+  --text-main: #4a2b3d;
+  --text-soft: #7a5468;
+
+  /* Tipografi */
+  --font-body: 'Poppins', system-ui, sans-serif;
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-script: 'Great Vibes', cursive;
+
+  /* Susun atur */
+  --content-width: 680px;
+  --radius-card: 24px;
+  --shadow-soft: 0 10px 30px rgba(139, 76, 112, 0.12);
+  --shadow-card: 0 6px 24px rgba(139, 76, 112, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Ruang untuk navigasi melekat di bawah */
+  scroll-padding-top: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--text-main);
+  /* Krim lembut yang bercahaya di atas, menghangat ke bawah */
+  background: linear-gradient(180deg, #fffdfb 0%, var(--warm-ivory) 38%, #fdf5f1 100%);
+  background-attachment: fixed;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: var(--deep-rose);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+/* Kurangkan animasi untuk pengguna yang memilihnya */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
