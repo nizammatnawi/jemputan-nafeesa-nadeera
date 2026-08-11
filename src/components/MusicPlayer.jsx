@@ -174,6 +174,69 @@ const MusicPlayer = forwardRef(function MusicPlayer(_props, ref) {
   // Bersihkan animasi kelantangan apabila komponen ditanggalkan
   useEffect(() => cancelFade, [])
 
+  /**
+   * Hentikan muzik automatik apabila tetamu meninggalkan laman
+   * (tukar tab/aplikasi, kunci skrin, minimize pelayar), dan sambung
+   * semula HANYA jika muzik sedang bermain sebelum ia disembunyikan —
+   * bukan jika tetamu sendiri yang menghentikannya.
+   *
+   * `wasPlayingBeforeHideRef` menyimpan keadaan itu. Beberapa event
+   * digunakan serentak (visibilitychange, pagehide, blur/focus) kerana
+   * tiada satu pun boleh dipercayai sepenuhnya merentasi semua pelayar —
+   * terutamanya iPhone Safari dan Android Chrome.
+   */
+  useEffect(() => {
+    const wasPlayingBeforeHideRef = { current: false }
+
+    const pauseForBackground = () => {
+      const audio = audioRef.current
+      if (!audio) return
+
+      if (!audio.paused) {
+        wasPlayingBeforeHideRef.current = true
+        cancelFade()
+        audio.pause()
+      } else {
+        wasPlayingBeforeHideRef.current = false
+      }
+    }
+
+    const resumeIfWasPlaying = () => {
+      const audio = audioRef.current
+      if (!audio || !wasPlayingBeforeHideRef.current) return
+      wasPlayingBeforeHideRef.current = false
+
+      audio
+        .play()
+        .then(() => {
+          setPlaying(true)
+          if (audio.volume < TARGET_VOLUME) fadeTo(TARGET_VOLUME, 800)
+        })
+        .catch(() => {
+          // Pelayar menyekat sambungan automatik — tetamu boleh guna butang muzik
+        })
+    }
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) pauseForBackground()
+      else resumeIfWasPlaying()
+    }
+
+    const handleFocus = () => resumeIfWasPlaying()
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    window.addEventListener('pagehide', pauseForBackground)
+    window.addEventListener('blur', pauseForBackground)
+    window.addEventListener('focus', handleFocus)
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+      window.removeEventListener('pagehide', pauseForBackground)
+      window.removeEventListener('blur', pauseForBackground)
+      window.removeEventListener('focus', handleFocus)
+    }
+  }, [fadeTo])
+
   return (
     <>
       <audio
