@@ -38,6 +38,9 @@ export function useAutoScroll(enabled) {
   const rafRef = useRef(null)
   const resumeRef = useRef(null)
   const pausedRef = useRef(false)
+  // Tahan tanpa had masa (contoh: semasa tetamu menaip ucapan) — berbeza
+  // daripada `pauseFor`, ini TIDAK sambung semula sendiri selepas tempoh.
+  const heldRef = useRef(false)
   const lastTimeRef = useRef(0)
   // Baki pecahan piksel — supaya kelajuan tepat walaupun skrol hanya
   // menerima nombor bulat setiap bingkai
@@ -55,13 +58,33 @@ export function useAutoScroll(enabled) {
     pausedRef.current = true
     clearResume()
     resumeRef.current = setTimeout(() => {
-      pausedRef.current = false
-      // Set semula supaya tiada lonjakan besar selepas jeda
-      lastTimeRef.current = 0
-      carryRef.current = 0
+      // Jangan sambung semula jika masih ditahan tanpa had masa (contoh:
+      // tetamu masih menaip dalam borang ucapan)
+      if (!heldRef.current) {
+        pausedRef.current = false
+        // Set semula supaya tiada lonjakan besar selepas jeda
+        lastTimeRef.current = 0
+        carryRef.current = 0
+      }
       resumeRef.current = null
     }, ms)
   }, [])
+
+  /**
+   * Tahan auto-skrol tanpa had masa — untuk digunakan semasa tetamu sedang
+   * menaip (contoh: borang ucapan). Dipanggil semasa borang mendapat fokus.
+   */
+  const hold = useCallback(() => {
+    heldRef.current = true
+    pausedRef.current = true
+    clearResume()
+  }, [])
+
+  /** Lepaskan tahanan; auto-skrol menyambung semula selepas jeda biasa. */
+  const release = useCallback(() => {
+    heldRef.current = false
+    pauseFor(JEDA_SELEPAS_MANUAL)
+  }, [pauseFor])
 
   useEffect(() => {
     if (!enabled) return
@@ -131,5 +154,5 @@ export function useAutoScroll(enabled) {
     }
   }, [enabled, pauseFor])
 
-  return { pauseFor }
+  return { pauseFor, hold, release }
 }

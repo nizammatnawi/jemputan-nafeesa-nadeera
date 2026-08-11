@@ -21,7 +21,7 @@ export default function App() {
 
   // Auto-skrol hanya dibenarkan selepas gerbang pembuka selesai sepenuhnya
   const [jemputanDibuka, setJemputanDibuka] = useState(false)
-  const { pauseFor } = useAutoScroll(jemputanDibuka)
+  const { pauseFor, hold, release } = useAutoScroll(jemputanDibuka)
 
   /**
    * Pastikan laman SENTIASA bermula di bahagian paling atas.
@@ -69,7 +69,7 @@ export default function App() {
         <Programme />
         <LocationCard />
         <Gallery />
-        <GuestWishes />
+        <GuestWishes onFormFocus={hold} onFormBlur={release} />
         <Doa />
         <Closing />
       </main>

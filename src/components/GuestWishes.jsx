@@ -19,7 +19,7 @@ const EMPTY_FORM = { name: '', message: '' }
  *
  * Hanya nama, ucapan dan tarikh dipaparkan. Tiada soalan kehadiran.
  */
-export default function GuestWishes() {
+export default function GuestWishes({ onFormFocus, onFormBlur }) {
   const [form, setForm] = useState(EMPTY_FORM)
   const [errors, setErrors] = useState({})
   const [sending, setSending] = useState(false)
@@ -91,6 +91,8 @@ export default function GuestWishes() {
       setForm(EMPTY_FORM)
       setErrors({})
       setSent(true)
+      // Ucapan berjaya dihantar — auto-skrol boleh menyambung semula
+      onFormBlur?.()
       // Muat semula senarai supaya ucapan baharu terus kelihatan
       await load(visible)
     } catch {
@@ -128,7 +130,18 @@ export default function GuestWishes() {
       )}
 
       {/* ---------- Borang ---------- */}
-      <form className="card wish-form" onSubmit={handleSubmit} noValidate>
+      <form
+        className="card wish-form"
+        onSubmit={handleSubmit}
+        noValidate
+        // Tahan auto-skrol selagi tetamu menaip dalam borang ini — bukan
+        // sekadar seketika. `relatedTarget` mengesan bila fokus BENAR-BENAR
+        // meninggalkan borang (bukan sekadar bertukar antara Nama & Ucapan).
+        onFocus={() => onFormFocus?.()}
+        onBlur={(event) => {
+          if (!event.currentTarget.contains(event.relatedTarget)) onFormBlur?.()
+        }}
+      >
         <div className="field">
           <label className="field__label" htmlFor="wish-name">
             Nama
