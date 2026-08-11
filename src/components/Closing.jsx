@@ -14,7 +14,7 @@ export default function Closing() {
       <p className="closing__host">{EVENT.host}</p>
 
       <ContactButton className="btn btn--solid closing__contact">
-        <span aria-hidden="true">💬</span> Hubungi Tuan Rumah
+        <span aria-hidden="true">💬</span> RSVP
       </ContactButton>
 
       <p className="closing__names">Puteri Nafeesa &amp; Puteri Nadeera</p>

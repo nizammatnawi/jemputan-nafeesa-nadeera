@@ -43,7 +43,7 @@ export default function EventDetails() {
 
           {/* Butang ini membuka pilihan maklum balas, bukan terus ke WhatsApp */}
           <ContactButton className="btn btn--outline">
-            <span aria-hidden="true">💬</span> Hubungi Tuan Rumah
+            <span aria-hidden="true">💬</span> RSVP
           </ContactButton>
         </div>
       </div>
