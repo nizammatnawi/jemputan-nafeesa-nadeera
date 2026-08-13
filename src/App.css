@@ -817,7 +817,7 @@ body.gerbang-dedah .music-btn {
 
 .marquee {
   /* ► Laraskan kelajuan di sini — makin besar, makin perlahan */
-  --sticker-marquee-duration: 40s;
+  --sticker-marquee-duration: 26s;
   --sticker-height: 78px;
   --sticker-gap: 14px;
 
