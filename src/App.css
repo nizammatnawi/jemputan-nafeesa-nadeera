@@ -818,8 +818,8 @@ body.gerbang-dedah .music-btn {
 .marquee {
   /* ► Laraskan kelajuan di sini — makin besar, makin perlahan */
   --sticker-marquee-duration: 40s;
-  --sticker-height: 96px;
-  --sticker-gap: 16px;
+  --sticker-height: 78px;
+  --sticker-gap: 14px;
 
   position: relative;
   margin-top: 12px;
@@ -881,8 +881,8 @@ body.gerbang-dedah .music-btn {
    supaya telefon dalam mod melintang (lebar tetapi pendek) tidak terjejas */
 @media (min-width: 760px) and (min-height: 700px) {
   .marquee {
-    --sticker-height: 140px;
-    --sticker-gap: 22px;
+    --sticker-height: 112px;
+    --sticker-gap: 18px;
   }
 }
 
